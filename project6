@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h> // Required for abs()
+
+int main() {
+    int num, temp;
+    long long product = 1;
+
+    // Prompt the user for input
+    printf("Enter any integer: ");
+    if (scanf("%d", &num) != 1) {
+        printf("Invalid input. Please enter a valid integer.\n");
+        return 1;
+    }
+
+    // Handle negative numbers by converting to absolute value
+    temp = abs(num);
+
+    // Special case for zero
+    if (temp == 0) {
+           product = 0;
+    } else {
+        // Loop to extract and multiply digits
+        while (temp > 0) {
+            product *= (temp % 10); // Extract last digit and multiply
+            temp /= 10;            // Remove the last digit
+        }
+    }
+
+    // Display the result
+    printf("The product of the digits of %d is: %lld\n", num, product);
+
+    return 0;
+}
