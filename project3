@@ -1,22 +1,28 @@
 #include <stdio.h>
 
 int main() {
-    int n, i;
-    unsigned long long fact = 1;
+    int num, remainder, sum = 0;
 
+    // Prompt user for input
     printf("Enter an integer: ");
-    scanf("%d", &n);
+    scanf("%d", &num);
 
-    // Error handling for negative numbers
-    if (n < 0) {
-        printf("Error! Factorial of a negative number doesn't exist.\n");
-    } else {
-        // Loop to calculate factorial
-        for (i = 1; i <= n; ++i) {
-            fact *= i; // fact = fact * i
-        }
-        printf("Factorial of %d = %llu\n", n, fact);
+    // Make a copy if you want to preserve the original negative sign or number
+    int temp = num;
+    
+    // Handle negative numbers by converting to positive
+    if (temp < 0) {
+        temp = -temp;
     }
+
+    // Loop to extract and sum digits
+    while (temp > 0) {
+        remainder = temp % 10;  // Extracts the last digit
+        sum += remainder;
+         temp /= 10;            // Removes the last digit
+    }
+
+    printf("Sum of the digits of %d is: %d\n", num, sum);
 
     return 0;
 }
