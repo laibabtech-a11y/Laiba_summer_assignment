@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+// Function to check if a number is prime
+int isPrime(int num) {
+    // Numbers less than 2 are not prime
+    if (num < 2) {
+        return 0;
+    }
+    
+    // Check divisibility from 2 up to the square root of the number
+    // i * i <= num is a more efficient alternative to using sqrt(num)
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) {
+            return 0; // Found a divisor, so it's not prime
+        }
+    }
+    return 1; // No divisors found, it is prime
+}
+
+int main() {
+    int lowerBound, upperBound;
+// Get the range from the user
+    printf("Enter lower bound of the range: ");
+    scanf("%d", &lowerBound);
+    printf("Enter upper bound of the range: ");
+    scanf("%d", &upperBound);
+
+    // Swap bounds if the user entered the larger number first
+    if (lowerBound > upperBound) {
+        int temp = lowerBound;
+        lowerBound = upperBound;
+        upperBound = temp;
+    }
+
+    printf("\nPrime numbers between %d and %d are:\n", lowerBound, upperBound);
+
+    // Iterate through the range and print prime numbers
+    int foundPrime = 0;
+    for (int i = lowerBound; i <= upperBound; i++) {
+        if (isPrime(i)) {
+            printf("%d ", i);
+            foundPrime = 1;
+        }
+    } if (!foundPrime) {
+        printf("None found in this range.");
+    }
+    
+    printf("\n");
+    return 0;
+}
