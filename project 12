@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+    // Initialize the first two terms of the sequence
+    unsigned long long t1 = 0, t2 = 1;
+    unsigned long long nextTerm;
+
+    // Request the total number of terms from the user
+    printf("Enter the number of terms: ");
+    if (scanf("%d", &n) != 1 || n <= 0) {
+        printf("Please enter a valid positive integer.\n");
+        return 1;
+    }
+
+    printf("Fibonacci Series: ");
+
+    // Handle and print the sequence based on user input
+    for (int i = 1; i <= n; ++i) {
+        if (i == 1) {
+            printf("%llu", t1);
+            continue;
+        }
+        if (i == 2) {
+            printf(", %llu", t2);
+            continue;
+        }
+        
+        // Calculate the next number in the sequence
+        nextTerm = t1 + t2;
+        printf(", %llu", nextTerm);
+        
+        // Shift variables forward for the next iteration
+        t1 = t2;
+        t2 = nextTerm;
+    }
+
+    printf("\n");
+    return 0;
+}
