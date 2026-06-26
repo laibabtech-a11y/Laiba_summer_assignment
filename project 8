@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <math.h> // Required for the sqrt() function
+
+int main() {
+    int num, isPrime = 1;
+
+    // Take user input
+    printf("Enter a positive integer: ");
+    scanf("%d", &num);
+
+    // 0 and 1 are not prime numbers
+    if (num <= 1) {
+        isPrime = 0;
+    } else {
+        // Loop from 2 up to the square root of the number
+        for (int i = 2; i <= sqrt(num); i++) {
+            // If the number is divisible by i, it is not prime
+            if (num % i == 0) {
+                isPrime = 0;
+                break; // Exit the loop immediately
+            }
+        } 
+    }
+
+    // Output the final result
+    if (isPrime == 1) {
+        printf("%d is a prime number.\n", num);
+    } else {
+        printf("%d is not a prime number.\n", num);
+    }
+
+    return 0;
+}
