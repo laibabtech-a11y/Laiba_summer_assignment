@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+// Function prototype
+int binaryToDecimal(long long n);
+
+int main() {
+    long long binary_num;
+
+    printf("Enter a binary number (using only 0s and 1s): ");
+    scanf("%lld", &binary_num);
+
+    // Call the function and print the result
+    printf("Decimal equivalent: %d\n", binaryToDecimal(binary_num));
+
+    return 0;
+}
+// Function to convert binary to decimal
+int binaryToDecimal(long long n) {
+    int decimal_num = 0;
+    int base = 1; // 2^0 initially
+    int remainder;
+
+    while (n > 0) {
+        remainder = n % 10;       // Extract the last digit
+        decimal_num += remainder * base; // Multiply digit with power of 2 and add
+        base = base * 2;          // Update base to next power of 2 (1, 2, 4, 8...)
+        n = n / 10;               // Remove the last digit from the number
+    }
+
+    return decimal_num;
+}
