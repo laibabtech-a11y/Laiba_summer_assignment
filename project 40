@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+// Function declaration (prototype)
+int add(int num1, int num2);
+
+int main() {
+    int a, b, result;
+
+    // Prompting the user for input
+    printf("Enter two integers: ");
+    scanf("%d %d", &a, &b);
+
+    // Function call
+    result = add(a, b);
+
+    // Displaying the result
+    printf("The sum of %d and %d is: %d\n", a, b, result);
+
+    return 0;
+    }
+
+// Function definition to find the sum
+int add(int num1, int num2) {
+    return num1 + num2;
+}
