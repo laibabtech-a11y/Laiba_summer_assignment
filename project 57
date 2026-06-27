@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+void findDuplicates(int arr[], int size) {
+    // Array to track if an element at a given index has been processed
+    int visited[size];
+    
+    // Initialize the tracking array to 0 (unvisited)
+    for (int i = 0; i < size; i++) {
+        visited[i] = 0;
+    }
+
+    printf("Duplicate elements in the array: ");
+    int foundDuplicate = 0;
+
+    // Outer loop to select an element
+    for (int i = 0; i < size; i++) {
+        // Only process the element if it hasn't been checked yet
+        if (visited[i] == 0) {
+            int count = 1;
+
+            // Inner loop to compare against subsequent elements
+            for (int j = i + 1; j < size; j++) {
+                if (arr[i] == arr[j]) {
+                    count++;
+                    visited[j] = 1; // Mark subsequent duplicates as visited
+                }
+            }
+
+            // If the element appeared more than once, print it
+            if (count > 1) {
+                printf("%d ", arr[i]);
+                foundDuplicate = 1;
+            }
+        }
+    }
+
+    if (!foundDuplicate) {
+        printf("None");
+           }
+    printf("\n");
+}
+
+int main() {
+    // Example array with multiple repetitions
+    int arr[] = {4, 2, 7, 4, 8, 2, 4, 3, 9, 2};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Original array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    findDuplicates(arr, size);
+
+    return 0;
+}
