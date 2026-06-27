@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+// Function to shift all zeroes to the end of the array
+void moveZeroesToEnd(int arr[], int size) {
+    int count = 0; // Tracks the index for the next non-zero element
+
+    // Step 1: Walk through the array. 
+    // If an element is not zero, shift it forward to the 'count' position.
+    for (int i = 0; i < size; i++) {
+        if (arr[i] != 0) {
+            arr[count] = arr[i];
+            count++;
+        }
+    }
+
+    // Step 2: Fill the rest of the array positions with zeroes.
+    while (count < size) {
+        arr[count] = 0;
+        count++;
+    }
+    }
+
+// Helper function to print the array elements
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int data[] = {1, 0, 3, 0, 12, 0, 5};
+    int n = sizeof(data) / sizeof(data[0]);
+
+    printf("Original Array: ");
+    printArray(data, n);
+
+    moveZeroesToEnd(data, n);
+  printf("Modified Array: ");
+    printArray(data, n);
+
+    return 0;
+}
