@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    int i, j;
+    char ch = 'A';
+
+    // Outer loop to handle the number of rows
+    for(i = 1; i <= 5; i++) {
+        
+        // Inner loop to print the character repeatedly
+        for(j = 1; j <= i; j++) {
+            printf("%c", ch);
+        }
+        
+        // Move to the next alphabet for the next row
+        ch++;
+        
+        // Print a newline to move to the next row
+        printf("\n");
+    }
+
+    return 0;
+}
