@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main() {
+    int i, j;
+    
+    // Outer loop controls the number of rows (1 to 5)
+    for (i = 1; i <= 5; i++) {
+        // Inner loop prints the number 'i' exactly 'i' times
+        for (j = 1; j <= i; j++) {
+            printf("%d", i);
+        }
+        // Print a comma after each number sequence, except for the last one
+        if (i < 5) {
+            printf(",");
+        }
+    }
+    
+    return 0;
