@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    int rows = 5; // Total rows for the given pattern
+
+    for (int i = 0; i < rows; i++) {
+        // 1. Print leading spaces for alignment
+        for (int j = 0; j < i; j++) {
+            printf(" ");
+        }
+
+        // 2. Print stars (Formula: 2 * (rows - i) - 1)
+        for (int k = 0; k < 2 * (rows - i) - 1; k++) {
+            printf("*");
+        }
+
+        // 3. Move to the next line
+        printf("\n");
+    }
+
+    return 0;
+}
