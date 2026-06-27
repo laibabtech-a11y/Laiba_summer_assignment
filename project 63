@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+// Function to find the missing number using Bitwise XOR
+int findMissingNumber(int arr[], int size) {
+    int xor_array = 0;
+    int xor_all = 0;
+    
+    // N is the total expected elements including the missing one
+    int n = size + 1; 
+
+    // 1. XOR all elements present in the array
+    for (int i = 0; i < size; i++) {
+        xor_array ^= arr[i];
+    }
+
+    // 2. XOR all expected numbers from 1 to N
+    for (int i = 1; i <= n; i++) {
+        xor_all ^= i;
+    
+      }
+
+    // 3. XORing both results gives the missing number
+    return xor_array ^ xor_all;
+}
+
+int main() {
+    // Array ranges from 1 to 6, with 4 missing
+    int arr[] = {1, 2, 6, 3, 5}; 
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    printf("The given array is: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    int missingNumber = findMissingNumber(arr, size);
+    printf("The missing number is: %d\n", missingNumber);
+
+    return 0;
+} 
