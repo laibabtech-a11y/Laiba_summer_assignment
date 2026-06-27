@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <limits.h> // Required for INT_MIN
+
+int main() {
+    int arr[100], size, i;
+    int largest, second_largest;
+
+    // Ask user for the number of elements
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &size);
+
+    // Validate that the array has at least two elements
+    if (size < 2) {
+        printf("Invalid Input! Array must contain at least two elements.\n");
+        return 1;
+    }
+
+    // Input array elements from user
+    printf("Enter %d elements:\n", size);
+    for (i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Initialize both variables to the minimum possible integer value
+    largest = INT_MIN;
+    second_largest = INT_MIN;
+
+    // Traverse the array to find the second largest element
+    for (i = 0; i < size; i++) {
+        if (arr[i] > largest) {
+            // The old largest now becomes the second largest
+            second_largest = largest;
+            largest = arr[i];
+        } 
+        // If current element is smaller than largest but greater than second largest
+        else if (arr[i] > second_largest && arr[i] != largest) {
+            second_largest = arr[i];
+             }
+    }
+
+    // Check if a second largest element actually exists
+    if (second_largest == INT_MIN) {
+        printf("There is no unique second largest element (all elements might be equal).\n");
+    } else {
+        printf("The largest element is: %d\n", largest);
+        printf("The second largest element is: %d\n", second_largest);
+    }
+
+    return 0;
+}
