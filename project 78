@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+    int size;
+    int primarySum = 0;
+    int secondarySum = 0;
+
+    // Get matrix dimensions
+    printf("Enter the size of the square matrix: ");
+    scanf("%d", &size);
+
+    int matrix[size][size];
+
+    // Input elements of the matrix
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            printf("Element [%d][%d]: ", i, j);
+            scanf("%d", &matrix[i][j]);
+        } }
+
+    // Calculate diagonal sums using a single loop
+    for (int i = 0; i < size; i++) {
+        primarySum += matrix[i][i];                  // Main diagonal condition: row == col
+        secondarySum += matrix[i][size - i - 1];     // Off diagonal condition: col == size - row - 1
+    }
+
+    // Display the results
+    printf("\n--- Result ---\n");
+    printf("Sum of Principal Diagonal elements: %d\n", primarySum);
+    printf("Sum of Secondary Diagonal elements: %d\n", secondarySum);
+
+    return 0;
+}
