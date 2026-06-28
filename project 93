@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+// Function to check if two strings are anagrams
+bool checkAnagram(const char *str1, const char *str2) {
+    int count[256] = {0};
+    int i;
+
+    // If lengths are not equal, they cannot be anagrams
+    if (strlen(str1) != strlen(str2)) {
+        return false;
+    }
+
+    // Update frequencies using a single loop
+    for (i = 0; str1[i] != '\0'; i++) {
+        count[(unsigned char)str1[i]]++;
+        count[(unsigned char)str2[i]]--;
+    }
+
+    // If any count is non-zero, strings are not anagrams
+    for (i = 0; i < 256; i++){
+        if (count[i] != 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+int main() {
+    // Large buffer size used to prevent standard overflow risks
+    char string1[256];
+    char string2[256];
+
+    printf("Enter the first string: ");
+    // Using fgets instead of gets() to ensure safer memory bounds
+    if (fgets(string1, sizeof(string1), stdin)) {
+        string1[strcspn(string1, "\n")] = '\0'; // Strip trailing newline
+    }
+      printf("Enter the second string: ");
+    if (fgets(string2, sizeof(string2), stdin)) {
+        string2[strcspn(string2, "\n")] = '\0'; // Strip trailing newline
+    }
+
+    if (checkAnagram(string1, string2)) {
+        printf("\"%s\" and \"%s\" are anagrams.\n", string1, string2);
+    } else {
+        printf("\"%s\" and \"%s\" are NOT anagrams.\n", string1, string2);
+    }
+
+    return 0;
+}
