@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+// Function to remove all spaces from a given string
+void removeSpaces(char *str) {
+    int readIdx = 0;  // Tracks the current character being read
+    int writeIdx = 0; // Tracks where the next non-space character goes
+
+    // Loop through each character until the null terminator
+    while (str[readIdx] != '\0') {
+        // If the character is not a space, copy it to the write index
+        if (str[readIdx] != ' ') {
+            str[writeIdx] = str[readIdx];
+            writeIdx++; // Move the write pointer forward
+        }
+        readIdx++; // Move the read pointer forward
+    }
+
+    // Explicitly add the null terminator to mark the new end of the string
+    str[writeIdx] = '\0';
+}
+int main() {
+    char text[256];
+
+    printf("Enter a string with spaces: ");
+    
+    // Read user input safely (including spaces)
+    if (fgets(text, sizeof(text), stdin) != NULL) {
+        
+        printf("Before: %s", text);
+        
+        // Remove the spaces in-place
+        removeSpaces(text);
+        
+        printf("After:  %s\n", text);
+    }
+
+    return 0;
+}
