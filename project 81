@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main() {
+    int rows, cols;
+    
+    // Ask user for matrix dimensions
+    printf("Enter the number of rows and columns: ");
+    scanf("%d %d", &rows, &cols);
+    
+    int matrix[rows][cols];
+    
+    // Input matrix elements from user
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("Element [%d][%d]: ", i, j);
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+// Display the entered matrix
+    printf("\nThe Matrix is:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d\t", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    
+    // Calculate and print the row-wise sum
+    printf("\nRow-wise Sum:\n");
+    for (int i = 0; i < rows; i++) {
+        int row_sum = 0; // Reset sum for each new row
+        for (int j = 0; j < cols; j++) {
+            row_sum += matrix[i][j]; // Add current element to sum
+        }
+        printf("Sum of Row %d = %d\n", i + 1, row_sum);
+    }
+    
+    return 0;
+}
