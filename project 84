@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+// Function to reverse a string in-place
+void reverseString(char str[]) {
+    int len = 0;
+    
+    // Find the length of the string manually
+    while (str[len] != '\0') {
+        len++;
+    }
+    
+    // Swap characters from both ends moving towards the center
+    int start = 0;
+    int end = len - 1;
+    char temp;
+    
+    while (start < end) {
+        // Swap characters
+        temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+// Move pointers closer
+        start++;
+        end--;
+    }
+}
+
+int main() {
+    // Array to hold up to 99 characters plus the null terminator
+    char str[100]; 
+    
+    printf("Enter a string: ");
+    // Reads input string, including spaces, until a newline is hit
+    scanf("%[^\n]s", str); 
+    
+    reverseString(str);
+    
+    printf("Reversed string: %s\n", str);
+    
+    return 0;
+}
