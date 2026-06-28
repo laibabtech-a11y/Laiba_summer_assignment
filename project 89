@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    char str[1000];
+    // Array to store the frequency of all 256 ASCII characters, initialized to 0
+    int freq[256] = {0}; 
+    int i;
+
+    printf("Enter a string: ");
+    // Safely reads a string from standard input, including spaces
+    fgets(str, sizeof(str), stdin);
+
+    // Loop through the string until the null-terminator is reached
+    for (i = 0; str[i] != '\0'; i++) {
+        // Skip the newline character added by fgets if you don't want to count it
+        if (str[i] == '\n') {
+            continue;
+        }
+        
+        // Use the character's ASCII value as the array index and increment its count
+        freq[(unsigned char)str[i]]++;
+         }
+
+    printf("\nCharacter Frequencies:\n");
+    // Print the frequencies of all characters that appeared at least once
+    for (i = 0; i < 256; i++) {
+        if (freq[i] != 0) {
+            // Check for spaces to make the output readable
+            if (i == ' ') {
+                printf("Space ' ' occurs %d times\n", freq[i]);
+            } else {
+                printf("Character '%c' occurs %d times\n", i, freq[i]);
+            }
+        }
+    }
+
+    return 0;
+}
