@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+int main() {
+    int rows, cols;
+    int i, j;
+    int isSymmetric = 1; // Flag variable: 1 means symmetric, 0 means not symmetric
+
+    // 1. Get matrix dimensions from user
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
+
+    // 2. A non-square matrix can never be symmetric
+    if (rows != cols) {
+        printf("\nResult: The matrix is NOT symmetric (It must be a square matrix).\n");
+        return 0;
+    }int matrix[rows][cols];
+
+    // 3. Input matrix elements
+    printf("\nEnter elements of the %dx%d matrix:\n", rows, cols);
+    for (i = 0; i < rows; i++) {
+        for (j = 0; j < cols; j++) {
+            printf("Element [%d][%d]: ", i, j);
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    // 4. Check for symmetry
+    // We only need to check the upper triangle (j > i) against the lower triangle
+    for (i = 0; i < rows; i++) {
+        for (j = i + 1; j < cols; j++) {
+            if (matrix[i][j] != matrix[j][i]) {
+                isSymmetric = 0; // Symmetry condition broken
+                break;           // Exit the inner loop
+            }
+        }if (!isSymmetric) {
+            break; // Exit the outer loop
+        }
+    }
+
+    // 5. Output the result
+    if (isSymmetric) {
+        printf("\nResult: The given matrix is a SYMMETRIC matrix.\n");
+    } else {
+        printf("\nResult: The given matrix is NOT a symmetric matrix.\n");
+    }
+
+    return 0;
+}
