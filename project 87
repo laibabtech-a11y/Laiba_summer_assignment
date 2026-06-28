@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+
+int isPalindrome(char str[]) {
+    int start = 0;
+    int end = strlen(str) - 1;
+
+    // Move pointers towards the middle
+    while (end > start) {
+        if (str[start] != str[end]) {
+            return 0; // Not a palindrome
+        }
+        start++;
+        end--;
+    }
+    return 1; // It is a palindrome
+}
+
+int main() {
+    char str[100];
+
+    printf("Enter a string: ");
+    // Reads input including spaces up to a newline character
+    scanf("%99s", str); 
+
+    if (isPalindrome(str)) {
+        printf("\"%s\" is a palindrome.\n", str);
+    } else {
+        printf("\"%s\" is NOT a palindrome.\n", str);
+    }
+
+    return 0;
+}
