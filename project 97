@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char sentence[256];
+    char longest_word[256] = "";
+    int current_len = 0;
+    int max_len = 0;
+    int start_index = 0;
+
+    printf("Enter a sentence: ");
+    // Use fgets instead of gets for safety against buffer overflow
+    if (fgets(sentence, sizeof(sentence), stdin) == NULL) {
+        return 1;
+    }
+
+    int i = 0;
+    while (sentence[i] != '\0') {
+        // Check if the character is an alphanumeric character (a valid part of a word)
+        if (isalnum((unsigned char)sentence[i])) {
+            if (current_len == 0) {
+                start_index = i; // Mark the beginning of a new word
+            }
+            current_len++;
+        } else {
+            // Word boundary reached (space, punctuation, or newline)
+            if (current_len > max_len) {
+                max_len = current_len;
+                // Safely copy the longest word found so far
+                strncpy(longest_word, &sentence[start_index], max_len);
+                longest_word[max_len] = '\0'; // Null-terminate the string
+            }
+            current_len = 0; // Reset length for the next word
+              }
+        i++;
+    }
+
+    // Print the results
+    if (max_len > 0) {
+        printf("The longest word is: \"%s\"\n", longest_word);
+        printf("Length: %d characters\n", max_len);
+    } else {
+        printf("No valid words found.\n");
+    }
+
+    return 0;
+}
