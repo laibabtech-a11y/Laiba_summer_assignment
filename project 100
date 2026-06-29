@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_CHAR 256
+
+void findCommonCharacters(char str1[], char str2[]) {
+    // Frequency arrays initialized to 0
+    int count1[MAX_CHAR] = {0};
+    int count2[MAX_CHAR] = {0};
+    int found = 0;
+
+    // Count character frequencies in the first string
+    for (int i = 0; str1[i] != '\0'; i++) {
+        // Cast to unsigned char to prevent negative index errors
+        count1[(unsigned char)str1[i]]++; 
+    }
+
+    // Count character frequencies in the second string
+    for (int i = 0; str2[i] != '\0'; i++) {
+        count2[(unsigned char)str2[i]]++;
+           }
+
+    printf("Common characters: ");
+
+    // Compare frequencies for all possible ASCII characters
+    for (int i = 0; i < MAX_CHAR; i++) {
+        if (count1[i] > 0 && count2[i] > 0) {
+            // Print the character (it exists in both strings)
+            printf("'%c' ", i);
+            found = 1;
+        }
+    }
+
+    if (!found) {
+        printf("None");
+    }
+    printf("\n");
+}
+int main() {
+    char str1[100], str2[100];
+
+    // Read input strings from the user
+    printf("Enter the first string: ");
+    fgets(str1, sizeof(str1), stdin);
+    // Remove trailing newline character added by fgets
+    str1[strcspn(str1, "\n")] = '\0'; 
+
+    printf("Enter the second string: ");
+    fgets(str2, sizeof(str2), stdin);
+    str2[strcspn(str2, "\n")] = '\0';
+
+    // Call the function
+    findCommonCharacters(str1, str2);
+
+    return 0;
+}
