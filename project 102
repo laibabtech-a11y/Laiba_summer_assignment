@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_WORDS 100
+#define MAX_LENGTH 50
+
+int main() {
+    char sentence[500];
+    char words[MAX_WORDS][MAX_LENGTH];
+    char temp[MAX_LENGTH];
+    int word_count = 0;
+
+    // 1. Get string input from user
+    printf("Enter a sentence: ");
+    if (fgets(sentence, sizeof(sentence), stdin) == NULL) {
+        return 1;
+    }
+
+    // Remove the trailing newline character added by fgets
+    sentence[strcspn(sentence, "\n")] = '\0';
+
+    // 2. Tokenize sentence into individual words using spaces and punctuation
+    char *token = strtok(sentence, " ,.-!?");
+    while (token != NULL && word_count < MAX_WORDS) {
+        strncpy(words[word_count], token, MAX_LENGTH - 1);
+        words[word_count][MAX_LENGTH - 1] = '\0'; // Ensure null-termination
+        word_count++;
+        token = strtok(NULL, " ,.-!?");
+    }
+
+    // 3. Sort the words by length using Bubble Sort algorithm
+    for (int i = 0; i < word_count - 1; i++) {
+        for (int j = 0; j < word_count - i - 1; j++) {
+            // Compare lengths using strlen()
+            if (strlen(words[j]) > strlen(words[j + 1])) {
+                // Swap the words if the first one is longer
+                strcpy(temp, words[j]);
+                strcpy(words[j], words[j + 1]);
+                strcpy(words[j + 1], temp);
+            }
+                }
+    }
+
+    // 4. Print out the sorted words
+    printf("\nWords sorted by length:\n");
+    for (int i = 0; i < word_count; i++) {
+        printf("%s (length: %lu)\n", words[i], (unsigned long)strlen(words[i]));
+    }
+
+    return 0;
+}
