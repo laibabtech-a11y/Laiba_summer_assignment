@@ -1,0 +1,48 @@
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+// Function to remove duplicate characters in-place
+void removeDuplicates(char* str) {
+    // Array to track if a character (0-255 ASCII) has been seen
+    bool seen[256] = { false };
+    
+    int readIndex = 0;
+    int writeIndex = 0;
+
+    // Traverse the string character by character
+    while (str[readIndex] != '\0') {
+        unsigned char ch = str[readIndex];
+
+        // If the character hasn't been seen yet, keep it
+        if (!seen[ch]) {
+            seen[ch] = true;             // Mark as seen
+            str[writeIndex] = str[readIndex]; // Write to unique position
+            writeIndex++;
+        }
+         readIndex++;
+    }
+
+    // Null-terminate the newly modified string
+    str[writeIndex] = '\0';
+}
+
+int main() {
+    char str[100];
+
+    printf("Enter a string: ");
+    // Safely read string with spaces up to 99 characters
+    if (fgets(str, sizeof(str), stdin)) {
+        // Remove trailing newline character added by fgets
+        str[strcspn(str, "\n")] = '\0';
+
+        printf("Original string: %s\n", str);
+          removeDuplicates(str);
+        
+        printf("String after removing duplicates: %s\n", str);
+    }
+
+    return 0;
+}
