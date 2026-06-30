@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define TOTAL_SEATS 10
+#define NAME_LEN 50
+
+// Structure to hold passenger booking details
+struct Ticket {
+    int seatNumber;
+    char passengerName[NAME_LEN];
+    int isBooked; // 0 = Available, 1 = Booked
+};
+
+// Function declarations
+void initializeSeats(struct Ticket system[], int size);
+void displaySeats(struct Ticket system[], int size);
+void bookTicket(struct Ticket system[], int size);
+void cancelTicket(struct Ticket system[], int size);
+
+int main() {
+     struct Ticket bookingSystem[TOTAL_SEATS];
+    int choice;
+
+    // Initialize all seats to available
+    initializeSeats(bookingSystem, TOTAL_SEATS);
+
+    while (1) {
+        printf("\n=== TICKET BOOKING SYSTEM ===\n");
+        printf("1. View Seat Layout & Availability\n");
+        printf("2. Book a Ticket\n");
+        printf("3. Cancel a Ticket\n");
+        printf("4. Exit\n");
+        printf("Enter your choice (1-4): ");
+        
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input. Please enter a number.\n");
+            while (getchar() != '\n'); // Clear input buffer
+            continue;
+        }
+
+        switch (choice) {
+            case 1:
+                displaySeats(bookingSystem, TOTAL_SEATS);
+                break;
+                case 2:
+                bookTicket(bookingSystem, TOTAL_SEATS);
+                break;
+            case 3:
+                cancelTicket(bookingSystem, TOTAL_SEATS);
+                break;
+            case 4:
+                printf("Thank you for using the Ticket Booking System. Goodbye!\n");
+                exit(0);
+            default:
+                printf("Invalid choice! Please select an option between 1 and 4.\n");
+        }
+    }
+    return 0;
+}
