@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define FILE_NAME "salary_data.dat"
+
+// Structure to store employee and salary details
+typedef struct {
+    int id;
+    char name[50];
+    char designation[50];
+    float basic_salary;
+    float hra;          // House Rent Allowance
+    float da;           // Dearness Allowance
+    float pf;           // Provident Fund deduction
+    float gross_salary;
+    float net_salary;
+} Employee;
+
+// Function prototypes
+void addEmployee();
+void displayAll();
+void searchEmployee();
+void calculateSalary(Employee *emp);
+
+int main() {
+    int choice;
+
+    while (1) {
+        printf("\n=================================");
+        printf("\n    SALARY MANAGEMENT SYSTEM     ");
+        printf("\n=================================");
+        printf("\n1. Add Employee Record");
+        printf("\n2. Display All Salary Slips");
+        printf("\n3. Search Employee Pay Slip by ID");
+        printf("\n4. Exit");
+        printf("\n=================================");
+        printf("\nEnter your choice: ");
+        
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input! Exiting program.\n");
+            break;
+        }
+         switch (choice) {
+            case 1:
+                addEmployee();
+                break;
+            case 2:
+                displayAll();
+                break;
+            case 3:
+                searchEmployee();
+                break;
+            case 4:
+                printf("\nThank you for using the system!\n");
+                exit(0);
+            default:
+                printf("\nInvalid choice! Please choose between 1 and 4.\n");
+        }
+    }
+    return 0;
+}
