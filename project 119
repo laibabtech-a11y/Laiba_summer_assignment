@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_ITEMS 100
+#define FILE_NAME "inventory.dat"
+
+// Structure to define product attributes
+typedef struct {
+    int id;
+    char name[50];
+    int quantity;
+    float price;
+} Product;
+
+// Function prototypes
+void addProduct();
+void viewInventory();
+void updateStock();
+void deleteProduct();
+void searchProduct();
+void loadInventory();Product inventory[MAX_ITEMS];
+int item_count = 0;
+
+int main() {
+    int choice;
+    loadInventory(); // Load existing records on startup
+
+    while (1) {
+        printf("\n=== INVENTORY MANAGEMENT SYSTEM ===\n");
+        printf("1. Add Product\n");
+        printf("2. View Inventory\n");
+        printf("3. Update Stock Quantity\n");
+        printf("4. Delete Product\n");
+        printf("5. Search Product\n");
+        printf("6. Save & Exit\n");
+        printf("Enter your choice (1-6): ");
+        
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input. Please enter a number.\n");
+            while (getchar() != '\n'); // Clear input buffer
+            continue;
+        }
+         switch (choice) {
+            case 1: addProduct(); break;
+            case 2: viewInventory(); break;
+            case 3: updateStock(); break;
+            case 4: deleteProduct(); break;
+            case 5: searchProduct(); break;
+            case 6: 
+                saveInventory();
+                printf("Data saved successfully. Exiting program...\n");
+                exit(0);
+            default: 
+                printf("Invalid choice! Please select an option between 1 and 6.\n");
+        }
+    }
+    return 0;
+}
+
