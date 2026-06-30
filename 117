@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_SIZE 100
+
+// Function prototypes
+void createArray(int arr[], int *size);
+void displayArray(const int arr[], int size);
+void insertElement(int arr[], int *size);
+void deleteElement(int arr[], int *size);
+void searchElement(const int arr[], int size);
+
+int main() {
+    int arr[MAX_SIZE];
+    int size = 0;
+    int choice;
+
+    // Outer loop ensures the menu is presented continuously until the user chooses to exit
+    do {
+        printf("\n=================================");
+        printf("\n*** ARRAY OPERATION SYSTEM ***");
+        printf("\n=================================");
+        printf("\n1. Create / Reset Array");
+
+
+
+ printf("\n2. Display Array Elements");
+        printf("\n3. Insert Element at a Position");
+        printf("\n4. Delete Element from a Position");
+        printf("\n5. Search for an Element");
+        printf("\n6. Exit");
+        printf("\n=================================");
+        printf("\nEnter your choice (1-6): ");
+        
+        // Input validation for menu choice
+        if (scanf("%d", &choice) != 1) {
+            printf("\n[Error]: Invalid input format. Please enter numbers only.\n");
+            while (getchar() != '\n'); // Clear the input buffer to prevent infinite loop
+            continue;
+        }
+
+        switch (choice) {
+            case 1:
+                createArray(arr, &size);
+                break;
+
+
+
+
+  case 2:
+                displayArray(arr, size);
+                break;
+            case 3:
+                insertElement(arr, &size);
+                break;
+            case 4:
+                deleteElement(arr, &size);
+                break;
+            case 5:
+                searchElement(arr, size);
+                break;
+            case 6:
+                printf("\nExiting the system. Goodbye!\n");
+                break;
+            default:
+                printf("\n[Warning]: Invalid choice! Please select an option between 1 and 6.\n");
+        }
+    } while (choice != 6);
+
+    return 0;
+}
