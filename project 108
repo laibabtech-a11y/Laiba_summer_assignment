@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_EMPLOYEES 100
+
+// Define structure to hold employee attributes
+typedef struct {
+    int id;
+    char name[50];
+    char designation[50];
+    float salary;
+} Employee;
+
+// Global array and tracking counter
+Employee employees[MAX_EMPLOYEES];
+int employeeCount = 0;
+
+// Function Prototypes
+void displayMenu();
+void addEmployee();
+void listEmployees();
+void modifyEmployee();
+void deleteEmployee();
+int findIndexById(int id);
+void clearInputBuffer();
+
+int main() {
+    int choice;
+
+    while (1) {
+        displayMenu();
+        printf("Enter your choice (1-5): ");
+        if (scanf("%d", &choice) != 1) {
+            printf("\nInvalid input! Please enter a number.\n");
+            clearInputBuffer();
+            continue;
+        }
+
+        switch (choice) {
+            case 1:
+                addEmployee();
+                break;
+            case 2:
+              listEmployees();
+                break;
+            case 3:
+                modifyEmployee();
+                break;
+            case 4:
+                deleteEmployee();
+                break;
+            case 5:
+                printf("\nExiting system. Goodbye!\n");
+                exit(0);
+            default:
+                printf("\nInvalid selection! Please try again.\n");
+        }
+    }
+    return 0;
+}
