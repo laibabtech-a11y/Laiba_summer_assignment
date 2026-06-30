@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_BOOKS 100
+
+// Define structure to hold book data
+struct Book {
+    int id;
+    char title[100];
+    char author[50];
+    int isAvailable; // 1 = Available, 0 = Issued
+};
+
+// Function prototypes
+void addBook(struct Book library[], int *count);
+void displayBooks(const struct Book library[], int count);
+void searchBook(const struct Book library[], int count);
+void issueBook(struct Book library[], int count);
+void returnBook(struct Book library[], int count);
+
+int main() {
+    struct Book library[MAX_BOOKS];
+    int bookCount = 0;
+    int choice;
+
+    while (1) {
+        printf("\n=============================\n");
+        printf("    MINI LIBRARY SYSTEM      \n");
+        printf("=============================\n");
+        printf("1. Add New Book\n");
+        printf("2. Display All Books\n");
+        printf("3. Search Book by Title\n");
+        printf("4. Issue a Book\n");
+        printf("5. Return a Book\n");
+        printf("6. Exit\n");
+        printf("Enter your choice (1-6): ");
+        
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input. Exiting.\n");
+            break;
+        }
+
+        switch (choice) {
+            case 1:
+                addBook(library, &bookCount);
+ break;
+            case 2:
+                displayBooks(library, bookCount);
+                break;
+            case 3:
+                searchBook(library, bookCount);
+                break;
+            case 4:
+                issueBook(library, bookCount);
+                break;
+            case 5:
+                returnBook(library, bookCount);
+                break;
+            case 6:
+                printf("Thank you for using the Mini Library System!\n");
+                return 0;
+            default:
+                printf("Invalid choice! Please choose between 1 and 6.\n");
+        }
+    }
+    return 0;
+}
