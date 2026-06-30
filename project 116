@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int choice;
+    double num1, num2, result;
+
+    // Continuous loop until user decides to exit
+    do {
+        // Displaying the selection menu
+        printf("\n=============================\n");
+        printf("    MENU DRIVEN CALCULATOR   \n");
+        printf("=============================\n");
+        printf("1. Addition (+)\n");
+        printf("2. Subtraction (-)\n");
+        printf("3. Multiplication (*)\n");
+        printf("4. Division (/)\n");
+        printf("5. Exit\n");
+        printf("Enter your choice (1-5): ");
+        scanf("%d", &choice);
+  // If user wants to exit, break out of the loop immediately
+        if (choice == 5) {
+            printf("Exiting the calculator. Goodbye!\n");
+            break;
+        }
+
+        // Validate selection before asking for numbers
+        if (choice < 1 || choice > 5) {
+            printf("Invalid selection! Please choose a valid menu option.\n");
+            continue;
+        }
+
+        // Taking operands from the user
+        printf("Enter first number: ");
+        scanf("%lf", &num1);
+        printf("Enter second number: ");
+        scanf("%lf", &num2);
+
+        // Processing operation based on menu choice
+        switch (choice) {
+              case 1:
+                result = num1 + choice; // Fixed visualization logic mapping below
+                result = num1 + num2;
+                printf("Result: %.2lf + %.2lf = %.2lf\n", num1, num2, result);
+                break;
+                
+            case 2:
+                result = num1 - num2;
+                printf("Result: %.2lf - %.2lf = %.2lf\n", num1, num2, result);
+                break;
+                
+            case 3:
+                result = num1 * num2;
+                printf("Result: %.2lf * %.2lf = %.2lf\n", num1, num2, result);
+                break;
+                
+            case 4:
+                // Runtime check to prevent undefined division by zero behavior
+                if (num2 == 0.0) {
+                    printf("Error: Division by zero is undefined!\n");
+                } else {
+                    result = num1 / num2;
+                      printf("Result: %.2lf / %.2lf = %.2lf\n", num1, num2, result);
+                }
+                break;
+
+            default:
+                printf("Unexpected application state.\n");
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
