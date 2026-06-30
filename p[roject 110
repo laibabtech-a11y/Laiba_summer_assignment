@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+
+// Structure to hold student details and marks
+struct Student {
+    char name[50];
+    int roll_no;
+    int marks[5]; // Array to store marks for 5 subjects
+    int total;
+    float percentage;
+    char grade[5];
+    char result[10];
+};
+
+// Function declarations
+void input_student_data(struct Student *s);
+void calculate_marksheet(struct Student *s);
+void display_marksheet(struct Student s);
+
+int main() {
+      struct Student student;
+
+    printf("=== STUDENT MARKSHEET GENERATION SYSTEM ===\n\n");
+    
+    // Call modular functions
+    input_student_data(&student);
+    calculate_marksheet(&student);
+    display_marksheet(student);
+
+    return 0;
+}
+
