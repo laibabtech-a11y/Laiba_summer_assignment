@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_ACCOUNTS 100
+#define NAME_LENGTH 50
+
+// Structure to store account details
+typedef struct {
+    int accountNumber;
+    char name[NAME_LENGTH];
+    double balance;
+} BankAccount;
+
+// Global array to hold accounts and a counter
+BankAccount bank[MAX_ACCOUNTS];
+int totalAccounts = 0;
+
+// Function Prototypes
+void createAccount();
+void depositMoney();
+void withdrawMoney();
+void checkBalance();
+void checkBalance();
+int findAccountIndex(int accNum);
+
+int main() {
+    int choice;
+
+    while (1) {
+        printf("\n=== BANK ACCOUNT MANAGEMENT SYSTEM ===\n");
+        printf("1. Create New Account\n");
+        printf("2. Deposit Money\n");
+        printf("3. Withdraw Money\n");
+        printf("4. Check Balance\n");
+        printf("5. Exit\n");
+        printf("Enter your choice (1-5): ");
+        
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input. Please enter a number.\n");
+            while (getchar() != '\n'); // Clear input buffer
+            continue;
+        }
+
+        switch (choice) {
+            case 1:
+             createAccount();
+                break;
+            case 2:
+                depositMoney();
+                break;
+            case 3:
+                withdrawMoney();
+                break;
+            case 4:
+                checkBalance();
+                break;
+            case 5:
+                printf("Thank you for using our banking system. Goodbye!\n");
+                exit(0);
+            default:
+                printf("Invalid choice! Please select an option between 1 and 5.\n");
+        }
+    }
+    return 0;
+}
