@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Define a structural blueprint for a single student record
+struct Student {
+    int rollNumber;
+    string name;       // Uses string to hold the student's name
+    string course;     // Uses string to hold the course name
+    float marks;
+};
+
+// Global constants and variables to track record storage
+const int MAX_STUDENTS = 100;
+Student records[MAX_STUDENTS]; // An array of structures to hold records
+int currentCount = 0;          // Tracks total records currently stored
+
+// Function declarations
+void addStudentRecord();
+void displayAllRecords();
+void searchStudentRecord();
+int main() {
+    int choice;
+
+    do {
+        // Main operational menu display
+        cout << "\n===== STUDENT RECORD SYSTEM =====" << endl;
+        cout << "1. Add Student Record" << endl;
+        cout << "2. Display All Student Records" << endl;
+        cout << "3. Search Record by Roll Number" << endl;
+        cout << "4. Exit System" << endl;
+        cout << "Enter your operational choice (1-4): ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                addStudentRecord();
+                break;
+            case 2:
+                displayAllRecords();
+                break;
+            case 3:
+                searchStudentRecord();
+                break;
+                 case 4:
+                cout << "Exiting the system. Goodbye!" << endl;
+                break;
+            default:
+                cout << "Invalid selection! Please enter a number between 1 and 4." << endl;
+        }
+    } while (choice != 4);
+
+    return 0;
+}
